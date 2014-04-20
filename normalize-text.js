@@ -50,7 +50,7 @@ var removeSepFromKnownTerms = function(text) {
     '分割繼承',
     '地籍圖修正測量',
     '持分分割',
-    '塗銷信託',
+    '塗銷信託'
   ];
 
   knownTerms.forEach(function(term) {
