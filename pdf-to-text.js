@@ -14,7 +14,7 @@ var main = function() {
     pdf.data.Pages.forEach(function(page) {
       page.Texts.forEach(function(text) {
         text.R.forEach(function(r) {
-          pdfText += decodeURIComponent(r.T).replace(/ /g, '') + SEP
+          pdfText += decodeURIComponent(r.T).replace(/ /g, '') + SEP;
         });
       });
     });

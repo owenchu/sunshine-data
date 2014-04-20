@@ -135,9 +135,9 @@ var parseRealEstate = function(realEstate, sunshineInfo) {
   parseRealEstateLands(results[1], sunshineInfo);
 
   // Parse buildings.
-  var regExpLands = new RegExp(
+  var regExpBuildings = new RegExp(
       insertSep('2.建物（房屋及停車位）.*取得價額', '(.*)'));
-  var results = realEstate.match(regExpLands);
+  results = realEstate.match(regExpBuildings);
   if (!results || results.length != 2) {
     throw 'Failed to parse real estate for ' + legislator;
   }
@@ -204,7 +204,7 @@ var parseRealEstateLandEntry = function(landEntry, sunshineInfo) {
 
   // Parse value.
   var regExpValue = /(?:買賣|繼承)(.*)/;
-  var results = landEntry.match(regExpValue);
+  results = landEntry.match(regExpValue);
   if (!results || results.length != 2) {
     throw 'Failed to parse land value for ' + legislator;
   }
@@ -277,7 +277,7 @@ var parseRealEstateBuildingEntry = function(buildingEntry, sunshineInfo) {
 
   // Parse value.
   var regExpValue = /(?:買賣|繼承|改建)(.*)/;
-  var results = buildingEntry.match(regExpValue);
+  results = buildingEntry.match(regExpValue);
   if (!results || results.length != 2) {
     throw 'Failed to parse building  value for ' + legislator;
   }
@@ -288,10 +288,10 @@ var parseRealEstateBuildingEntry = function(buildingEntry, sunshineInfo) {
   sunshineInfo['real-estate-building'] =
       sunshineInfo['real-estate-building'] || [];
   sunshineInfo['real-estate-building'].push(buildingInfo);
-}
+};
 
 var parseBoats = function(boats, sunshineInfo) {
-  if (!/本欄空白/.test(boats)) {
+  if (boats.indexOf('本欄空白') == -1) {
     throw 'It\'s time to implement parseBoats.';
   }
 };
@@ -334,13 +334,13 @@ var parseCars = function(cars, sunshineInfo) {
 };
 
 var parseAircraft = function(aircraft, sunshineInfo) {
-  if (!/本欄空白/.test(aircraft)) {
+  if (aircraft.indexOf('本欄空白') == -1) {
     throw 'It\'s time to implement parseAircraft.';
   }
 };
 
 var parseCash = function(cash, sunshineInfo) {
-  if (!/本欄空白/.test(cash)) {
+  if (cash.indexOf('本欄空白') == -1) {
     throw 'It\'s time to implement parseCash.';
   }
 };
