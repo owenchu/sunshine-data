@@ -1,0 +1,27 @@
+{ legislator: '楊麗環',
+  'report-date': Tue Dec 31 2013 00:00:00 GMT-0800 (PST),
+  'real-estate-land': 
+   [ { address: '桃園縣桃園市和平段0411-0000地號',
+       'acquire-date': Mon May 19 2008 00:00:00 GMT-0700 (PDT),
+       value: 1102154 },
+     { address: '臺北市文山區政大段四小段0646-0000地號',
+       'acquire-date': Thu Jun 06 2013 00:00:00 GMT-0700 (PDT),
+       value: 10465000 } ],
+  'real-estate-building': 
+   [ { address: '桃園縣桃園市莊二段04489-000建號',
+       'acquire-date': Mon May 19 2008 00:00:00 GMT-0700 (PDT),
+       value: 892100 },
+     { address: '桃園縣桃園市莊二段04460-000建號',
+       'acquire-date': Mon May 19 2008 00:00:00 GMT-0700 (PDT),
+       value: 130639 },
+     { address: '臺北市文山區政大段四小段02320-000建號',
+       'acquire-date': Thu Jun 06 2013 00:00:00 GMT-0700 (PDT),
+       value: '4,485,000(與第○筆土地或第○筆建物合購)' } ],
+  cars: 
+   [ { name: '國瑞',
+       'acquire-date': Mon May 26 2008 00:00:00 GMT-0700 (PDT),
+       value: 1150000 } ],
+  deposit: 8144447,
+  securities: 277740,
+  debt: 5000000,
+  investment: 5450000 }

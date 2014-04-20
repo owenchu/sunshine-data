@@ -1,0 +1,9 @@
+{ legislator: '楊玉欣',
+  'report-date': Thu Dec 19 2013 00:00:00 GMT-0800 (PST),
+  cars: 
+   [ { name: '國瑞Wish',
+       'acquire-date': Tue May 03 2005 00:00:00 GMT-0700 (PDT),
+       value: '(超過五年)' } ],
+  deposit: 7096789,
+  securities: 1834960,
+  debt: 6899302 }

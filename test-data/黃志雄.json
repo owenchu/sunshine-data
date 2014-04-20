@@ -1,0 +1,25 @@
+{ legislator: '黃志雄',
+  'report-date': Mon Dec 30 2013 00:00:00 GMT-0800 (PST),
+  'real-estate-land': 
+   [ { address: '新北市樹林區山佳段0567-0000地號',
+       'acquire-date': Wed Apr 09 2008 00:00:00 GMT-0700 (PDT),
+       value: 647200 } ],
+  'real-estate-building': 
+   [ { address: '新北市樹林區山佳段01069-000建號',
+       'acquire-date': Wed Apr 09 2008 00:00:00 GMT-0700 (PDT),
+       value: 5232800 },
+     { address: '新北市樹林區中山路?????-???建號',
+       'acquire-date': Fri Jan 14 2011 00:00:00 GMT-0800 (PST),
+       value: 223400 },
+     { address: '新北市樹林區中山路?????-???建號',
+       'acquire-date': Fri Jan 14 2011 00:00:00 GMT-0800 (PST),
+       value: 208700 } ],
+  cars: 
+   [ { name: 'Toyota',
+       'acquire-date': Thu Jun 26 2008 00:00:00 GMT-0700 (PDT),
+       value: 505000 },
+     { name: '中華',
+       'acquire-date': Fri Sep 17 2010 00:00:00 GMT-0700 (PDT),
+       value: 389100 } ],
+  deposit: 16704366,
+  securities: 7528200 }

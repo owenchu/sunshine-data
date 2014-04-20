@@ -202,7 +202,7 @@ var parseRealEstateLandEntry = function(landEntry, sunshineInfo) {
       parseInt(results[3], 10));
 
   // Parse value.
-  var regExpValue = /(?:買賣|繼承|受贈|夫妻贈與|拍賣|第一次登記|共有物分割|合併|逕為合併|塗銷信託)(.*)/;
+  var regExpValue = /(?:買賣|分割繼承|繼承|受贈|贈與|夫妻贈與|拍賣|第一次登記|共有物分割|合併|逕為合併|分割|地籍圖修正測量|持分分割|塗銷信託)(.*)/;
   results = landEntry.match(regExpValue);
   if (!results || results.length != 2) {
     throw 'Failed to parse land value for ' + legislator;
@@ -273,7 +273,7 @@ var parseRealEstateBuildingEntry = function(buildingEntry, sunshineInfo) {
       parseInt(results[3], 10));
 
   // Parse value.
-  var regExpValue = /(?:買賣|繼承|受贈|夫妻贈與|拍賣|第一次登記|新建|改建)(.*)/;
+  var regExpValue = /(?:買賣|繼承|受贈|夫妻贈與|拍賣|第一次登記|共有物分割|新建|改建|自建)(.*)/;
   results = buildingEntry.match(regExpValue);
   if (!results || results.length != 2) {
     throw 'Failed to parse building  value for ' + legislator;

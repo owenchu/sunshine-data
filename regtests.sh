@@ -11,6 +11,9 @@ do
     if [ $case == 許添財 ]; then
         echo $case $(tput setaf 3)SKIPPED$(tput sgr0)
         continue
+    elif [ $case == 葉宜津 ]; then
+        echo $case $(tput setaf 5)TBD$(tput sgr0)
+        continue
     fi
 
     if [ ! -f input.txt ]; then
