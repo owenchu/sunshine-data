@@ -67,6 +67,7 @@ var fixBadTerms = function(text) {
     {oldStr: '總!價額', newStr: '總價額'},
     {oldStr: '總金!額', newStr: '總金額'},
     {oldStr: '新臺!幣', newStr: '新臺幣'},
+    {oldStr: '新!臺幣', newStr: '新臺幣'},
     {oldStr: '\\(!自建!\\)', newStr: '自建'}
   ];
 
@@ -173,17 +174,23 @@ var fixBrokenParts = function(text) {
     {oldStr: '桃園縣桃園市中德里永福西街!150.90!全部!蘇主榮',
      newStr: '桃園縣桃園市中德里永福西街?????-???建號!150.90!全部!蘇主榮'},
     {oldStr: '屏東縣東港鎮興東里新興二街!1,240.85!100000!分!之!50000!蘇主榮',
-     newStr: '屏東縣東港鎮興東里新興二街?????-???建號!1,240.85!100000!分!之!50000!蘇主榮'}
+     newStr: '屏東縣東港鎮興東里新興二街?????-???建號!1,240.85!100000!分!之!50000!蘇主榮'},
+    {oldStr: '與!13!、!14!地號!及!建物總價',
+     newStr: '與!13!、!14!地!號!及!建物總價'},
+    {oldStr: '與!04!、!14!地號!及!建物總價',
+     newStr: '與!04!、!14!地!號!及!建物總價'},
+    {oldStr: '與!04!、!13!地號!及!建物總價',
+     newStr: '與!04!、!13!地!號!及!建物總價'}
   ];
 
   brokenParts.forEach(function(part) {
     text = text.replace(part.oldStr, part.newStr);
   });
 
-  //var str = '與建物合購';
-  //var index = text.indexOf(str);
-  //console.log(text.substring(index-10, index+5000));
-  //console.log('');
+  var str = '臺北市大安區金華段三小段!0383!-!0004!地號';
+  var index = text.indexOf(str);
+  console.log(text.substring(index-10, index+500));
+  console.log('');
 
   return text;
 };

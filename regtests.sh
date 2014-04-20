@@ -8,11 +8,8 @@ do
     filename=$(basename "$test_file")
     case="${filename%.*}"
 
-    if [ $case == 許添財 ]; then
+    if [ $case == 許添財 ] || [ $case == 葉宜津 ]; then
         echo $case $(tput setaf 3)SKIPPED$(tput sgr0)
-        continue
-    elif [ $case == 葉宜津 ]; then
-        echo $case $(tput setaf 5)TBD$(tput sgr0)
         continue
     fi
 

@@ -420,7 +420,7 @@ var parseDebt = function(debt, sunshineInfo) {
 
 var parseInvestment = function(investment, sunshineInfo) {
   var legislator = sunshineInfo['legislator'];
-  var regExpInvestment= /總金額：新臺幣(.*)元/;
+  var regExpInvestment= /總金額：新臺幣(.*?)元/;
   var results = investment.match(regExpInvestment);
   if (!results || results.length != 2) {
     throw 'Failed to parse investment for ' + legislator;
