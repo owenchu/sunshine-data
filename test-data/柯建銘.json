@@ -1,0 +1,17 @@
+{ legislator: '柯建銘',
+  'report-date': Tue Dec 03 2013 00:00:00 GMT-0800 (PST),
+  'real-estate-land': 
+   [ { address: '臺北市信義區信義段五小段0033-0002地號',
+       'acquire-date': Mon Aug 25 2003 00:00:00 GMT-0700 (PDT),
+       value: 20000000 } ],
+  'real-estate-building': 
+   [ { address: '臺北市信義區信義段五小段00928-000建號',
+       'acquire-date': Mon Aug 25 2003 00:00:00 GMT-0700 (PDT),
+       value: 30000000 } ],
+  cars: 
+   [ { name: 'MERCEDES-BENR350CDI4MATIC',
+       'acquire-date': Tue Mar 01 2011 00:00:00 GMT-0800 (PST),
+       value: 3210000 } ],
+  deposit: 851707,
+  securities: 648280,
+  debt: 47141368 }

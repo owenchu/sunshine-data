@@ -9,8 +9,7 @@ var parseText = function(text, legislator) {
   var results = text.match(regExpForm);
 
   if (!results || results.length != 2) {
-    console.log('Failed to parse form for ' + legislator);
-    return;
+    throw 'Failed to parse form for ' + legislator;
   }
 
   parseForm(results[1], sunshineInfo);
@@ -203,7 +202,7 @@ var parseRealEstateLandEntry = function(landEntry, sunshineInfo) {
       parseInt(results[3], 10));
 
   // Parse value.
-  var regExpValue = /(?:買賣|繼承|拍賣|第一次登記|共有物分割)(.*)/;
+  var regExpValue = /(?:買賣|繼承|受贈|夫妻贈與|拍賣|第一次登記|共有物分割|合併|逕為合併|塗銷信託)(.*)/;
   results = landEntry.match(regExpValue);
   if (!results || results.length != 2) {
     throw 'Failed to parse land value for ' + legislator;
@@ -274,7 +273,7 @@ var parseRealEstateBuildingEntry = function(buildingEntry, sunshineInfo) {
       parseInt(results[3], 10));
 
   // Parse value.
-  var regExpValue = /(?:買賣|拍賣|繼承|第一次登記|新建|改建)(.*)/;
+  var regExpValue = /(?:買賣|繼承|受贈|夫妻贈與|拍賣|第一次登記|新建|改建)(.*)/;
   results = buildingEntry.match(regExpValue);
   if (!results || results.length != 2) {
     throw 'Failed to parse building  value for ' + legislator;
@@ -337,7 +336,7 @@ var parseAircraft = function(aircraft, sunshineInfo) {
 
 var parseCash = function(cash, sunshineInfo) {
   var legislator = sunshineInfo['legislator'];
-  var regExpCash = /（總金額：新臺幣(.*?)元）/;
+  var regExpCash = /總金額：新臺幣(.*?)元/;
   var results = cash.match(regExpCash);
   if (!results || results.length != 2) {
     throw 'Failed to parse cash for ' + legislator;
@@ -351,7 +350,7 @@ var parseCash = function(cash, sunshineInfo) {
 
 var parseDeposit = function(deposit, sunshineInfo) {
   var legislator = sunshineInfo['legislator'];
-  var regExpDeposit = /（總金額：新臺幣(.*?)元）/;
+  var regExpDeposit = /總金額：新臺幣(.*?)元/;
   var results = deposit.match(regExpDeposit);
   if (!results || results.length != 2) {
     throw 'Failed to parse deposit for ' + legislator;
@@ -365,7 +364,7 @@ var parseDeposit = function(deposit, sunshineInfo) {
 
 var parseSecurities = function(securities, sunshineInfo) {
   var legislator = sunshineInfo['legislator'];
-  var regExpSecurities = /（總價額：新臺幣(.*?)元）/;
+  var regExpSecurities = /總價額：新臺幣(.*?)元/;
   var results = securities.match(regExpSecurities);
   if (!results || results.length != 2) {
     throw 'Failed to parse securities for ' + legislator;
@@ -379,7 +378,7 @@ var parseSecurities = function(securities, sunshineInfo) {
 
 var parseJewelry = function(jewelry, sunshineInfo) {
   var legislator = sunshineInfo['legislator'];
-  var regExpJewelry = /（總價額：新臺幣(.*?)元）/;
+  var regExpJewelry = /總價額：新臺幣(.*?)元/;
   var results = jewelry.match(regExpJewelry);
   if (!results || results.length != 2) {
     throw 'Failed to parse jewelry for ' + legislator;
@@ -393,7 +392,7 @@ var parseJewelry = function(jewelry, sunshineInfo) {
 
 var parseLoan = function(loan, sunshineInfo) {
   var legislator = sunshineInfo['legislator'];
-  var regExpLoan = /（總金額：新臺幣(.*?)元）/;
+  var regExpLoan = /總金額：新臺幣(.*?)元/;
   var results = loan.match(regExpLoan);
   if (!results || results.length != 2) {
     throw 'Failed to parse loan for ' + legislator;
@@ -407,7 +406,7 @@ var parseLoan = function(loan, sunshineInfo) {
 
 var parseDebt = function(debt, sunshineInfo) {
   var legislator = sunshineInfo['legislator'];
-  var regExpDebt = /（總金額：新臺幣(.*?)元）/;
+  var regExpDebt = /總金額：新臺幣(.*?)元/;
   var results = debt.match(regExpDebt);
   if (!results || results.length != 2) {
     throw 'Failed to parse debt for ' + legislator;
@@ -421,7 +420,7 @@ var parseDebt = function(debt, sunshineInfo) {
 
 var parseInvestment = function(investment, sunshineInfo) {
   var legislator = sunshineInfo['legislator'];
-  var regExpInvestment= /（總金額：新臺幣(.*)元）/;
+  var regExpInvestment= /總金額：新臺幣(.*)元/;
   var results = investment.match(regExpInvestment);
   if (!results || results.length != 2) {
     throw 'Failed to parse investment for ' + legislator;

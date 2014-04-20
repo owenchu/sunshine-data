@@ -1,0 +1,28 @@
+{ legislator: '許添財',
+  'report-date': Tue Dec 31 2013 00:00:00 GMT-0800 (PST),
+  'real-estate-land': 
+   [ { address: '臺南市安南區海東段0045-0069地號',
+       'acquire-date': Fri Jul 03 1998 00:00:00 GMT-0700 (PDT),
+       value: '(超過5年)' },
+     { address: '臺南市安南區海東段0045-0070地號',
+       'acquire-date': Mon Aug 16 1999 00:00:00 GMT-0700 (PDT),
+       value: '(超過5年)' },
+     { address: '165th St., Flushing, New York, Block 5250 Lot26',
+       'acquire-date': Fri May 15 1992 00:00:00 GMT-0700 (PDT),
+       value: '(超過5年)' } ],
+  'real-estate-building': 
+   [ { address: '臺南市安南區海東段01774-000建號',
+       'acquire-date': Mon Aug 16 1999 00:00:00 GMT-0700 (PDT),
+       value: '(超過五年)' },
+     { address: '臺南市安南區海東段01773-000建號',
+       'acquire-date': Mon Aug 16 1999 00:00:00 GMT-0700 (PDT),
+       value: '(超過5年)' },
+     { address: '165th St., Flushing, New York, Block 5250 Lot26',
+       'acquire-date': Fri May 15 1992 00:00:00 GMT-0700 (PDT),
+       value: '(超過5年)' } ],
+  cars: 
+   [ { name: '國瑞-MVIEPE',
+       'acquire-date': Thu Sep 23 2004 00:00:00 GMT-0700 (PDT),
+       value: 1100000 } ],
+  deposit: 13450841,
+  jewelry: 3918202 }

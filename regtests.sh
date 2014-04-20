@@ -1,11 +1,18 @@
 #!/bin/bash
 # tputcolors
 
-cases=( 丁守中 尤美女 王育敏 王進士 王惠美 何欣純 吳秉叡 吳育仁 吳育昇 李俊俋 李桐豪 李慶華 邱議瑩 林明溱 林郁方 林國正 林淑芬 林鴻池 姚文智 )
 success=true
 
-for case in "${cases[@]}"
+for test_file in test-data/*.json
 do
+    filename=$(basename "$test_file")
+    case="${filename%.*}"
+
+    if [ $case == 許添財 ]; then
+        echo $case $(tput setaf 3)SKIPPED$(tput sgr0)
+        continue
+    fi
+
     if [ ! -f input.txt ]; then
         echo Converting PDF to text...
         node pdf-to-text.js test-data/監察院廉政專刊第61期.pdf > input.txt
