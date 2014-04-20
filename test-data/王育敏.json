@@ -3,7 +3,7 @@
   'real-estate-building': 
    [ { address: '臺北市大同區市府段一小段00927-000建號',
        'acquire-date': Wed Sep 02 2009 00:00:00 GMT-0700 (PDT),
-       value: 5000000 } ],
+       value: '5,000,000(為地上權房屋,僅有使用權45年,無土地所有權,無權利持分)' } ],
   cars: 
    [ { name: 'TOYOTARAV4',
        'acquire-date': Sun Feb 03 2013 00:00:00 GMT-0800 (PST),

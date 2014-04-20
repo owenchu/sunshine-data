@@ -25,7 +25,7 @@
        value: '(超過五年)' },
      { address: '新北市新店區環河段00970-000建號',
        'acquire-date': Mon Mar 11 2013 00:00:00 GMT-0700 (PDT),
-       value: 12177820 } ],
+       value: '12,177,820(陽台9.24平方公尺)' } ],
   cars: 
    [ { name: '中華',
        'acquire-date': Tue Nov 20 2007 00:00:00 GMT-0800 (PST),

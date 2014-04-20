@@ -55,7 +55,7 @@
        value: '(停車位))(超過五年)' },
      { address: '新北市板橋區海山段03468-000建號',
        'acquire-date': Thu Oct 07 2010 00:00:00 GMT-0700 (PDT),
-       value: 11067000 } ],
+       value: '11,067,000(與第10筆土地合併計價)' } ],
   cars: 
    [ { name: '國瑞國產客貨車',
        'acquire-date': Wed Sep 01 2004 00:00:00 GMT-0700 (PDT),

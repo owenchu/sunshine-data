@@ -208,9 +208,7 @@ var parseRealEstateLandEntry = function(landEntry, sunshineInfo) {
   if (!results || results.length != 2) {
     throw 'Failed to parse land value for ' + legislator;
   }
-  var valueStr = removeSep(results[1]);
-  var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
-  landInfo['value'] = isNaN(valueNum) ? valueStr :valueNum;
+  landInfo['value'] = parseValue(results[1]);
 
   sunshineInfo['real-estate-land'] = sunshineInfo['real-estate-land'] || [];
   sunshineInfo['real-estate-land'].push(landInfo);
@@ -281,9 +279,7 @@ var parseRealEstateBuildingEntry = function(buildingEntry, sunshineInfo) {
   if (!results || results.length != 2) {
     throw 'Failed to parse building  value for ' + legislator;
   }
-  var valueStr = removeSep(results[1]);
-  var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
-  buildingInfo['value'] = isNaN(valueNum) ? valueStr :valueNum;
+  buildingInfo['value'] = parseValue(results[1]);
 
   sunshineInfo['real-estate-building'] =
       sunshineInfo['real-estate-building'] || [];
@@ -327,10 +323,7 @@ var parseCars = function(cars, sunshineInfo) {
       parseInt(results[2], 10) + 1911,
       parseInt(results[3], 10) - 1,
       parseInt(results[4], 10));
-
-    var valueStr = removeSep(results[5]);
-    var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
-    carEntry['value'] = isNaN(valueNum) ? valueStr :valueNum;
+    carEntry['value'] = parseValue(results[5]);
 
     sunshineInfo['cars'].push(carEntry);
   });
@@ -350,11 +343,9 @@ var parseCash = function(cash, sunshineInfo) {
     throw 'Failed to parse cash for ' + legislator;
   }
 
-  var valueStr = removeSep(results[1]);
-  var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
-
-  if (!isNaN(valueNum)) {
-    sunshineInfo['cash'] = valueNum;
+  var value = parseValue(results[1]);
+  if (!isNaN(value)) {
+    sunshineInfo['cash'] = value;
   }
 };
 
@@ -366,11 +357,9 @@ var parseDeposit = function(deposit, sunshineInfo) {
     throw 'Failed to parse deposit for ' + legislator;
   }
 
-  var valueStr = removeSep(results[1]);
-  var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
-
-  if (!isNaN(valueNum)) {
-    sunshineInfo['deposit'] = valueNum;
+  var value = parseValue(results[1]);
+  if (!isNaN(value)) {
+    sunshineInfo['deposit'] = value;
   }
 };
 
@@ -382,11 +371,9 @@ var parseSecurities = function(securities, sunshineInfo) {
     throw 'Failed to parse securities for ' + legislator;
   }
 
-  var valueStr = removeSep(results[1]);
-  var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
-
-  if (!isNaN(valueNum)) {
-    sunshineInfo['securities'] = valueNum;
+  var value = parseValue(results[1]);
+  if (!isNaN(value)) {
+    sunshineInfo['securities'] = value;
   }
 };
 
@@ -398,11 +385,9 @@ var parseJewelry = function(jewelry, sunshineInfo) {
     throw 'Failed to parse jewelry for ' + legislator;
   }
 
-  var valueStr = removeSep(results[1]);
-  var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
-
-  if (!isNaN(valueNum)) {
-    sunshineInfo['jewelry'] = valueNum;
+  var value = parseValue(results[1]);
+  if (!isNaN(value)) {
+    sunshineInfo['jewelry'] = value;
   }
 };
 
@@ -414,11 +399,9 @@ var parseLoan = function(loan, sunshineInfo) {
     throw 'Failed to parse loan for ' + legislator;
   }
 
-  var valueStr = removeSep(results[1]);
-  var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
-
-  if (!isNaN(valueNum)) {
-    sunshineInfo['loan'] = valueNum;
+  var value = parseValue(results[1]);
+  if (!isNaN(value)) {
+    sunshineInfo['loan'] = value;
   }
 };
 
@@ -430,11 +413,9 @@ var parseDebt = function(debt, sunshineInfo) {
     throw 'Failed to parse debt for ' + legislator;
   }
 
-  var valueStr = removeSep(results[1]);
-  var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
-
-  if (!isNaN(valueNum)) {
-    sunshineInfo['debt'] = valueNum;
+  var value = parseValue(results[1]);
+  if (!isNaN(value)) {
+    sunshineInfo['debt'] = value;
   }
 };
 
@@ -446,11 +427,21 @@ var parseInvestment = function(investment, sunshineInfo) {
     throw 'Failed to parse investment for ' + legislator;
   }
 
-  var valueStr = removeSep(results[1]);
-  var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
+  var value = parseValue(results[1]);
+  if (!isNaN(value)) {
+    sunshineInfo['investment'] = value;
+  }
+};
 
-  if (!isNaN(valueNum)) {
-    sunshineInfo['investment'] = valueNum;
+var parseValue = function(str) {
+  var valueStr = removeSep(str);
+  if (!valueStr) {
+    return NaN;
+  } else if (/[^\d,]+/.test(valueStr)) {
+    return valueStr;
+  } else {
+    var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
+    return isNaN(valueNum) ? valueStr :valueNum;
   }
 };
 

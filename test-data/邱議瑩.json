@@ -3,7 +3,7 @@
   'real-estate-land': 
    [ { address: '高雄市美濃區福安段0241-0000地號',
        'acquire-date': Mon Apr 10 2006 00:00:00 GMT-0700 (PDT),
-       value: 133075 },
+       value: '133,075(超過五年)' },
      { address: '高雄市鳥松區育才段0316-0000地號',
        'acquire-date': Fri Jun 18 2010 00:00:00 GMT-0700 (PDT),
        value: 17000000 } ],

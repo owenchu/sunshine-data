@@ -3,7 +3,7 @@
   'real-estate-land': 
    [ { address: '臺北市中正區永昌段六小段0022-0005地號',
        'acquire-date': Wed Mar 26 2008 00:00:00 GMT-0700 (PDT),
-       value: 14345000 },
+       value: '14,345,000(與下列七筆為同一交易)' },
      { address: '臺北市中正區永昌段六小段0022-0005地號',
        'acquire-date': Wed Mar 26 2008 00:00:00 GMT-0700 (PDT),
        value: '與第一筆為同一交易' },
@@ -49,7 +49,7 @@
   'real-estate-building': 
    [ { address: '臺北市中正區永昌段六小段01214-000建號',
        'acquire-date': Wed Mar 26 2008 00:00:00 GMT-0700 (PDT),
-       value: 14345000 },
+       value: '14,345,000((與下列三筆為同一交易）' },
      { address: '臺北市中正區永昌段六小段01193-000建號',
        'acquire-date': Wed Mar 26 2008 00:00:00 GMT-0700 (PDT),
        value: '與第一筆為同一交易' },
