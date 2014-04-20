@@ -1,0 +1,21 @@
+{ legislator: '邱議瑩',
+  'report-date': Tue Dec 03 2013 00:00:00 GMT-0800 (PST),
+  'real-estate-land': 
+   [ { address: '高雄市美濃區福安段0241-0000地號',
+       'acquire-date': Mon Apr 10 2006 00:00:00 GMT-0700 (PDT),
+       value: 133075 },
+     { address: '高雄市鳥松區育才段0316-0000地號',
+       'acquire-date': Fri Jun 18 2010 00:00:00 GMT-0700 (PDT),
+       value: 17000000 } ],
+  'real-estate-building': 
+   [ { address: '高雄市鳥松區育才段02053-000建號',
+       'acquire-date': Fri Jun 18 2010 00:00:00 GMT-0700 (PDT),
+       value: 17000000 } ],
+  cars: 
+   [ { name: 'NISSAN',
+       'acquire-date': Tue Aug 27 2002 00:00:00 GMT-0700 (PDT),
+       value: '(超過五年)' } ],
+  deposit: 8639935,
+  securities: 1170,
+  debt: 15056650,
+  investment: 1500000 }

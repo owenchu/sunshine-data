@@ -1,0 +1,16 @@
+{ legislator: '林淑芬',
+  'report-date': Mon Dec 30 2013 00:00:00 GMT-0800 (PST),
+  'real-estate-land': 
+   [ { address: '新北市永和區永福段0823-0000地號',
+       'acquire-date': Thu Jun 13 1991 00:00:00 GMT-0700 (PDT),
+       value: '(超過五年)' } ],
+  'real-estate-building': 
+   [ { address: '新北市永和區永福段02017-000建號',
+       'acquire-date': Thu Jun 13 1991 00:00:00 GMT-0700 (PDT),
+       value: '(超過五年)' } ],
+  cars: 
+   [ { name: 'toyotarav4rod',
+       'acquire-date': Tue Mar 01 2011 00:00:00 GMT-0800 (PST),
+       value: 989000 } ],
+  cash: 4100000,
+  deposit: 4100000 }

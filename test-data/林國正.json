@@ -1,0 +1,24 @@
+{ legislator: '林國正',
+  'report-date': Tue Dec 24 2013 00:00:00 GMT-0800 (PST),
+  'real-estate-land': 
+   [ { address: '高雄市鼓山區龍北段0007-0000地號',
+       'acquire-date': Mon Jul 22 2013 00:00:00 GMT-0700 (PDT),
+       value: 15150000 } ],
+  'real-estate-building': 
+   [ { address: '高雄市鼓山區龍北段00260-000建號',
+       'acquire-date': Tue Jul 22 1913 00:00:00 GMT-0700 (PDT),
+       value: 5480000 },
+     { address: '高雄市鼓山區龍北段00344-000建號',
+       'acquire-date': Mon Jul 22 2013 00:00:00 GMT-0700 (PDT),
+       value: 1020000 } ],
+  cars: 
+   [ { name: 'BluebirdSylphyG11TS(客車)',
+       'acquire-date': Mon Oct 12 2009 00:00:00 GMT-0700 (PDT),
+       value: 740000 },
+     { name: '納智捷L91M/LD',
+       'acquire-date': Tue Jan 15 2013 00:00:00 GMT-0800 (PST),
+       value: 930000 } ],
+  cash: 37000,
+  deposit: 2855156,
+  securities: 4230,
+  debt: 5890212 }

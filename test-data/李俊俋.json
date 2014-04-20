@@ -1,0 +1,22 @@
+{ legislator: '李俊俋',
+  'report-date': Mon Dec 02 2013 00:00:00 GMT-0800 (PST),
+  'real-estate-land': 
+   [ { address: '嘉義市嘉義市長竹段0006-0002地號',
+       'acquire-date': Fri Feb 09 2007 00:00:00 GMT-0800 (PST),
+       value: 8000000 } ],
+  'real-estate-building': 
+   [ { address: '嘉義市嘉義市長竹段01946-000建號',
+       'acquire-date': Fri Feb 09 2007 00:00:00 GMT-0800 (PST),
+       value: 3000000 } ],
+  cars: 
+   [ { name: 'MAZDA3',
+       'acquire-date': Wed Sep 16 2009 00:00:00 GMT-0700 (PDT),
+       value: 600000 },
+     { name: 'MAZDAMPV',
+       'acquire-date': Mon Aug 01 2005 00:00:00 GMT-0700 (PDT),
+       value: 1300000 },
+     { name: '三菱DELICA',
+       'acquire-date': Wed Sep 07 2011 00:00:00 GMT-0700 (PDT),
+       value: 150000 } ],
+  deposit: 1389383,
+  debt: 10694991 }
