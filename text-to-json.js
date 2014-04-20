@@ -1,5 +1,5 @@
 var SEP = '!';
-var NUMBER = '(\\d+)';
+var DATE_PATTERN = '(\\d+)年(\\d+)月(\\d+)日';
 
 var parseText = function(text, legislator) {
   var sunshineInfo = {'legislator': legislator};
@@ -22,8 +22,7 @@ var parseForm = function(form, sunshineInfo) {
   var legislator = sunshineInfo['legislator'];
   var results;
 
-  var regExpReportDate = new RegExp(
-      insertSep('申報日', NUMBER, '年', NUMBER, '月', NUMBER, '日'));
+  var regExpReportDate = new RegExp(insertSep('申報日', DATE_PATTERN));
   results = form.match(regExpReportDate);
   if (!results || results.length != 4) {
     throw 'Failed to parse report date for ' + legislator;
@@ -193,8 +192,7 @@ var parseRealEstateLandEntry = function(landEntry, sunshineInfo) {
   landInfo['address'] = removeSep(landEntry.substring(0, index + 2));
 
   // Parse acquisition date.
-  var regExpAcquireDate = new RegExp(
-      insertSep(NUMBER, '年', NUMBER, '月', NUMBER, '日'));
+  var regExpAcquireDate = new RegExp(DATE_PATTERN);
   var results = landEntry.match(regExpAcquireDate);
   if (!results || results.length != 4) {
     throw 'Failed to parse land acquisition date for ' + legislator;
@@ -267,8 +265,7 @@ var parseRealEstateBuildingEntry = function(buildingEntry, sunshineInfo) {
   buildingInfo['address'] = removeSep(buildingEntry.substring(0, index + 2));
 
   // Parse acquisition date.
-  var regExpAcquireDate = new RegExp(
-      insertSep(NUMBER, '年', NUMBER, '月', NUMBER, '日'));
+  var regExpAcquireDate = new RegExp(DATE_PATTERN);
   var results = buildingEntry.match(regExpAcquireDate);
   if (!results || results.length != 4) {
     throw 'Failed to parse building acquisition date for ' + legislator;

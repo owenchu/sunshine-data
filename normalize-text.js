@@ -7,7 +7,11 @@ var removeUnwantedTerms = function(text) {
       '(\\d{1,3})' + insertOptionalSep('期') + '(\\d{1,3})' + OPTIONAL_SEP
   ];
 
-  return text.replace(new RegExp(unwantedTerms[0], 'g'), SEP);
+  unwantedTerms.forEach(function(term) {
+    text = text.replace(new RegExp(term, 'g'), SEP);
+  });
+
+  return text;
 };
 
 var removeSepFromKnownTerms = function(text) {
@@ -29,7 +33,8 @@ var removeSepFromKnownTerms = function(text) {
     '（十一）債務',
     '（十二）事業投資',
     '（十三）備註',
-    '取得價額'
+    '取得價額',
+    '本欄空白'
   ];
 
   knownTerms.forEach(function(term) {
@@ -38,6 +43,16 @@ var removeSepFromKnownTerms = function(text) {
   });
 
   return text;
+};
+
+var fixDates = function(text) {
+  var regExpDate = new RegExp(
+      OPTIONAL_SEP +
+      '(\\d+)' + insertOptionalSep('年') +
+      '(\\d+)' + insertOptionalSep('月') +
+      '(\\d+)' + insertOptionalSep('日'), 'g');
+
+  return text.replace(regExpDate, wrapStrWithSep('$1年$2月$3日'));
 };
 
 var insertOptionalSep = function(str) {
@@ -66,6 +81,7 @@ var main = function() {
   process.stdin.on('end', function() {
     text = removeUnwantedTerms(text);
     text = removeSepFromKnownTerms(text);
+    text = fixDates(text);
     process.stdout.write(text);
   });
 };
