@@ -1,0 +1,14 @@
+{ legislator: '王育敏',
+  'report-date': Tue Nov 12 2013 00:00:00 GMT-0800 (PST),
+  'real-estate-building': 
+   [ { address: '臺北市大同區市府段一小段00927-000建號',
+       'acquire-date': Wed Sep 02 2009 00:00:00 GMT-0700 (PDT),
+       value: 5000000 } ],
+  cars: 
+   [ { name: 'TOYOTARAV4',
+       'acquire-date': Sun Feb 03 2013 00:00:00 GMT-0800 (PST),
+       value: '950,000' } ],
+  deposit: 1940448,
+  securities: 950000,
+  jewelry: 298500,
+  debt: 2520000 }

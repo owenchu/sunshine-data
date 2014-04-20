@@ -157,7 +157,7 @@ var parseRealEstateLands = function(lands, sunshineInfo) {
   var index = lands.indexOf('地號');
 
   if (index == -1) {
-    console.log('No land entry for ' + legislator);
+    // No land entry.
     return;
   }
 
@@ -332,7 +332,7 @@ var parseCars = function(cars, sunshineInfo) {
 
   carEntries.forEach(function(car) {
     results = car.match(
-        /(.*?)(\d,\d{3}).*?年(\d{1,2})月(\d{1,2})日(?:買賣|所有權移轉)((?:\d|,)+)/);
+        /(.*?)(?:\d,\d{3}).*?(\d{2,3})年(\d{1,2})月(\d{1,2})日(?:買賣|所有權移轉)((?:\d|,)+)/);
     
     var carEntry = {};
     carEntry['name'] = results[1];
@@ -469,6 +469,12 @@ var removeSep = function(str) {
 };
 
 var main = function() {
+  if (process.argv.length <= 2) {
+    console.log(
+        'Usage: node text-to-json.js legislator-name [legislator-name ...]');
+    return;
+  }
+
   var text = '';
 
   process.stdin.setEncoding('utf8');
@@ -485,9 +491,11 @@ var main = function() {
         'g');
     text = text.replace(regExpPageFooter, '');
 
-    parseText(text, '尤美女');
-    parseText(text, '丁守中');
-    parseText(text, '王進士');
+    var legislators = process.argv.slice(2);
+
+    legislators.forEach(function(legislator) {
+      parseText(text, legislator);
+    });
   });
 };
 
