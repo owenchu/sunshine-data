@@ -34,12 +34,28 @@ var removeSepFromKnownTerms = function(text) {
     '（十二）事業投資',
     '（十三）備註',
     '取得價額',
-    '本欄空白'
+    '本欄空白',
+    '第一次登記'
   ];
 
   knownTerms.forEach(function(term) {
     text = text.replace(
         new RegExp(insertOptionalSep(term), 'g'), wrapStrWithSep(term));
+  });
+
+  return text;
+};
+
+var fixBrokenParts = function(text) {
+  var brokenParts = [
+    {oldStr:
+      '新北市淡水區海天段!01761!-!000!51.15!100000!分!劉娟娟!95!年!03!月!買賣!(!超過五年!)!建號!之!303!15!日',
+     newStr:
+       '新北市淡水區海天段!01761!-!000!建號!51.15!100000!分!之!303!劉娟娟!95!年!03!月!15!日!買賣!(!超過五年!)'}
+  ];
+
+  brokenParts.forEach(function(part) {
+    text = text.replace(part.oldStr, part.newStr);
   });
 
   return text;
@@ -81,6 +97,7 @@ var main = function() {
   process.stdin.on('end', function() {
     text = removeUnwantedTerms(text);
     text = removeSepFromKnownTerms(text);
+    text = fixBrokenParts(text);
     text = fixDates(text);
     process.stdout.write(text);
   });

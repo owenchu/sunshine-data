@@ -35,7 +35,7 @@
   cars: 
    [ { name: 'LEXUSES350(客車)',
        'acquire-date': Tue Apr 19 2011 00:00:00 GMT-0700 (PDT),
-       value: '600,000' } ],
+       value: 600000 } ],
   deposit: 5823403,
   securities: 28258950,
   jewelry: 2600000,

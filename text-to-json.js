@@ -203,7 +203,7 @@ var parseRealEstateLandEntry = function(landEntry, sunshineInfo) {
       parseInt(results[3], 10));
 
   // Parse value.
-  var regExpValue = /(?:買賣|繼承)(.*)/;
+  var regExpValue = /(?:買賣|繼承|拍賣|第一次登記)(.*)/;
   results = landEntry.match(regExpValue);
   if (!results || results.length != 2) {
     throw 'Failed to parse land value for ' + legislator;
@@ -221,7 +221,7 @@ var parseRealEstateBuildings = function(buildings, sunshineInfo) {
   var index = buildings.indexOf('建號');
 
   if (index == -1) {
-    console.log('No building entry for ' + legislator);
+    // No building entry.
     return;
   }
 
@@ -276,7 +276,7 @@ var parseRealEstateBuildingEntry = function(buildingEntry, sunshineInfo) {
       parseInt(results[3], 10));
 
   // Parse value.
-  var regExpValue = /(?:買賣|繼承|改建)(.*)/;
+  var regExpValue = /(?:買賣|繼承|新建|改建)(.*)/;
   results = buildingEntry.match(regExpValue);
   if (!results || results.length != 2) {
     throw 'Failed to parse building  value for ' + legislator;
@@ -306,10 +306,10 @@ var parseCars = function(cars, sunshineInfo) {
 
   var content = removeSep(results[1]);
   results = content.match(
-      /(.*?)(\d,\d{3}).*?(\d{2,3})年(\d{1,2})月(\d{1,2})日(?:買賣|所有權移轉)((?:\d|,)+)/g);
+      /(.*?)(\d,\d{3}).*?(\d{2,3})年(\d{1,2})月(\d{1,2})日(買賣|所有權移轉)((\d|,)+|\(超過五年\))/g);
 
   if (!results) {
-    console.log('No car entry for ' + legislator);
+    // No car.
     return;
   }
 
@@ -319,7 +319,7 @@ var parseCars = function(cars, sunshineInfo) {
 
   carEntries.forEach(function(car) {
     results = car.match(
-        /(.*?)(?:\d,\d{3}).*?(\d{2,3})年(\d{1,2})月(\d{1,2})日(?:買賣|所有權移轉)((?:\d|,)+)/);
+        /(.*?)(?:\d,\d{3}).*?(\d{2,3})年(\d{1,2})月(\d{1,2})日(?:買賣|所有權移轉)((?:\d|,)+|\(超過五年\))/);
     
     var carEntry = {};
     carEntry['name'] = results[1];
@@ -327,7 +327,10 @@ var parseCars = function(cars, sunshineInfo) {
       parseInt(results[2], 10) + 1911,
       parseInt(results[3], 10) - 1,
       parseInt(results[4], 10));
-    carEntry['value'] = results[5];
+
+    var valueStr = removeSep(results[5]);
+    var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
+    carEntry['value'] = isNaN(valueNum) ? valueStr :valueNum;
 
     sunshineInfo['cars'].push(carEntry);
   });
@@ -340,8 +343,18 @@ var parseAircraft = function(aircraft, sunshineInfo) {
 };
 
 var parseCash = function(cash, sunshineInfo) {
-  if (cash.indexOf('本欄空白') == -1) {
-    throw 'It\'s time to implement parseCash.';
+  var legislator = sunshineInfo['legislator'];
+  var regExpCash = /（總金額：新臺幣(.*)元）/;
+  var results = cash.match(regExpCash);
+  if (!results || results.length != 2) {
+    throw 'Failed to parse cash for ' + legislator;
+  }
+
+  var valueStr = removeSep(results[1]);
+  var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
+
+  if (!isNaN(valueNum)) {
+    sunshineInfo['cash'] = valueNum;
   }
 };
 

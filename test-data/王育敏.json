@@ -7,7 +7,7 @@
   cars: 
    [ { name: 'TOYOTARAV4',
        'acquire-date': Sun Feb 03 2013 00:00:00 GMT-0800 (PST),
-       value: '950,000' } ],
+       value: 950000 } ],
   deposit: 1940448,
   securities: 950000,
   jewelry: 298500,

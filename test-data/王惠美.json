@@ -1,0 +1,20 @@
+{ legislator: '王惠美',
+  'report-date': Fri Dec 27 2013 00:00:00 GMT-0800 (PST),
+  'real-estate-land': 
+   [ { address: '彰化縣鹿港鎮山崙段0486-0000地號',
+       'acquire-date': Wed Feb 16 2011 00:00:00 GMT-0800 (PST),
+       value: 3080000 },
+     { address: '彰化縣鹿港鎮鹿德段0574-0000地號',
+       'acquire-date': Tue Aug 05 1997 00:00:00 GMT-0700 (PDT),
+       value: '(超過五年)' } ],
+  'real-estate-building': 
+   [ { address: '彰化縣鹿港鎮鹿德段00362-000建號',
+       'acquire-date': Tue Aug 05 1997 00:00:00 GMT-0700 (PDT),
+       value: '(超過五年)' } ],
+  cars: 
+   [ { name: '中華CL24SDA',
+       'acquire-date': Fri Mar 16 2012 00:00:00 GMT-0700 (PDT),
+       value: 704000 } ],
+  securities: 11608640,
+  jewelry: 303780,
+  debt: 15302790 }

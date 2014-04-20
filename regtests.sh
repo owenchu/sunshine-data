@@ -1,7 +1,7 @@
 #!/bin/bash
 # tputcolors
 
-cases=( 丁守中 尤美女 王育敏 王進士 )
+cases=( 丁守中 尤美女 王育敏 王進士 王惠美 何欣純 吳秉叡 吳育仁 吳育昇 )
 success=true
 
 for case in "${cases[@]}"

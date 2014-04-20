@@ -1,0 +1,21 @@
+{ legislator: '何欣純',
+  'report-date': Mon Dec 30 2013 00:00:00 GMT-0800 (PST),
+  'real-estate-land': 
+   [ { address: '臺中市大里區大孝段0038-0001地號',
+       'acquire-date': Thu Aug 26 2004 00:00:00 GMT-0700 (PDT),
+       value: '(超過五年)' },
+     { address: '臺中市大里區大孝段0038-0000地號',
+       'acquire-date': Thu Aug 26 2004 00:00:00 GMT-0700 (PDT),
+       value: '(超過五年)' } ],
+  'real-estate-building': 
+   [ { address: '臺中市清水區秀水段秀水小段00060-000建號',
+       'acquire-date': Fri Jan 14 2000 00:00:00 GMT-0800 (PST),
+       value: '(超過五年)' },
+     { address: '臺中市清水區秀水段秀水小段01498-000建號',
+       'acquire-date': Thu Aug 26 2004 00:00:00 GMT-0700 (PDT),
+       value: '(超過五年)' } ],
+  cars: 
+   [ { name: '國瑞(國產091603)',
+       'acquire-date': Thu Oct 25 2007 00:00:00 GMT-0700 (PDT),
+       value: '(超過五年)' } ],
+  debt: 6715377 }

@@ -62,7 +62,7 @@
   cars: 
    [ { name: 'JAGUARXF2008-03',
        'acquire-date': Thu Mar 07 2013 00:00:00 GMT-0800 (PST),
-       value: '300,000' } ],
+       value: 300000 } ],
   deposit: 47121593,
   securities: 61999036,
   investment: 600000 }
