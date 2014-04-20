@@ -7,7 +7,6 @@ var main = function() {
   }
 
   var PFParser = require('pdf2json');
-
   var pdfParser = new PFParser();
   var pdfText = '';
 
@@ -20,7 +19,7 @@ var main = function() {
       });
     });
 
-    console.log(pdfText);
+    process.stdout.write(pdfText);
   });
   pdfParser.on("pdfParser_dataError", function(pdf) {
     console.log('Failed to parse ' + pdfFilePath);

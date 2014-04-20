@@ -1,21 +1,19 @@
 var SEP = '!';
-//var NUMBER = '((?:\\d|\\d!)+)';
 var NUMBER = '(\\d+)';
 
 var parseText = function(text, legislator) {
   var sunshineInfo = {'legislator': legislator};
   var regExpForm = new RegExp(
-      insertSep('公', '職', '人', '員', '財', '產', '申', '報', '表',
-                '申報人姓名') +
-      legislator + '.*' + '申報人：' + legislator);
+      insertSep('公職人員財產申報表', '申報人姓名') +
+      legislator + '(.*)' + '申報人：' + legislator);
   var results = text.match(regExpForm);
 
-  if (!results) {
+  if (!results || results.length != 2) {
     console.log('Failed to parse form for ' + legislator);
     return;
   }
 
-  parseForm(results[0], sunshineInfo);
+  parseForm(results[1], sunshineInfo);
 
   console.log(sunshineInfo);
 };
@@ -25,7 +23,7 @@ var parseForm = function(form, sunshineInfo) {
   var results;
 
   var regExpReportDate = new RegExp(
-      insertSep('申', '報', '日', NUMBER, '年', NUMBER, '月', NUMBER, '日'));
+      insertSep('申報日', NUMBER, '年', NUMBER, '月', NUMBER, '日'));
   results = form.match(regExpReportDate);
   if (!results || results.length != 4) {
     throw 'Failed to parse report date for ' + legislator;
@@ -45,9 +43,7 @@ var parseForm = function(form, sunshineInfo) {
   parseRealEstate(results[1], sunshineInfo);
 
   // Parse boats.
-  //var regExpBoats = /（三）船舶(.*)（四）汽車/;
-  var regExpBoats = new RegExp(
-    '（三）船舶(.*)（' + SEP + '?' + '四）汽車');
+  var regExpBoats = /（三）船舶(.*)（四）汽車/;
   results = form.match(regExpBoats);
   if (!results || results.length != 2) {
     throw 'Failed to parse boats for ' + legislator;
@@ -55,9 +51,7 @@ var parseForm = function(form, sunshineInfo) {
   parseBoats(results[1], sunshineInfo);
 
   // Parse cars.
-  //var regExpCars = /（四）汽車（含大型重型機器腳踏車）(.*)（五）航空器/;
-  var regExpCars = new RegExp(
-      '（' + SEP + '?' + '四）汽車（含大型重型機器腳踏車）(.*)（五）航空器');
+  var regExpCars = /（四）汽車（含大型重型機器腳踏車）(.*)（五）航空器/;
   results = form.match(regExpCars);
   if (!results || results.length != 2) {
     throw 'Failed to parse cars for ' + legislator;
@@ -121,7 +115,7 @@ var parseForm = function(form, sunshineInfo) {
   parseDebt(results[1], sunshineInfo);
 
   // Parse investment.
-  var regExpInvestment = /（十二）事業投資(.*)（十三）備/;
+  var regExpInvestment = /（十二）事業投資(.*)（十三）備註/;
   results = form.match(regExpInvestment);
   if (!results || results.length != 2) {
     throw 'Failed to parse investment for ' + legislator;
@@ -134,9 +128,7 @@ var parseRealEstate = function(realEstate, sunshineInfo) {
 
   // Parse lands.
   var regExpLands = new RegExp(
-      insertSep('1.', '土地') + '.*' + insertSep('取', '得', '價', '額') +
-      '(.*)' +
-      insertSep('2.', '建物（房屋及停車位）'));
+      insertSep('1.土地.*取得價額', '(.*)', '2.建物（房屋及停車位）'));
   var results = realEstate.match(regExpLands);
   if (!results || results.length != 2) {
     throw 'Failed to parse real estate for ' + legislator;
@@ -145,10 +137,11 @@ var parseRealEstate = function(realEstate, sunshineInfo) {
 
   // Parse buildings.
   var regExpLands = new RegExp(
-      insertSep('2.', '建物（房屋及停車位）') + '.*' +
-      insertSep('取', '得', '價', '額') +
-      '(.*)');
+      insertSep('2.建物（房屋及停車位）.*取得價額', '(.*)'));
   var results = realEstate.match(regExpLands);
+  if (!results || results.length != 2) {
+    throw 'Failed to parse real estate for ' + legislator;
+  }
   parseRealEstateBuildings(results[1], sunshineInfo);
 };
 
@@ -188,8 +181,6 @@ var parseRealEstateLands = function(lands, sunshineInfo) {
   parseRealEstateLandEntry(lands.substring(entryStartIndex), sunshineInfo);
 };
 
-// Example 1: 臺北市士林區天母段一小段!0143!-!0000!地號!1,!470!10000!分之!312!黃瑞明!91!年!07!月!04!日!買賣!(!超過五年!)!
-// Example 2: 南投縣中寮鄉先驅段!1467!-!0000!地號!1,300!全部!黃瑞明!101!年!03!月!06!日!買賣!559!,273!
 var parseRealEstateLandEntry = function(landEntry, sunshineInfo) {
   var legislator = sunshineInfo['legislator'];
   var landInfo = {};
@@ -310,8 +301,7 @@ var parseBoats = function(boats, sunshineInfo) {
 
 var parseCars = function(cars, sunshineInfo) {
   var legislator = sunshineInfo['legislator'];
-  var regExpCars = new RegExp(
-      insertSep('取', '得', '價', '額') + '(.*)');
+  var regExpCars = new RegExp(insertSep('取得價額', '(.*)'));
   var results = cars.match(regExpCars);
   if (!results || results.length != 2) {
     throw 'Failed to parse cars for ' + legislator;
