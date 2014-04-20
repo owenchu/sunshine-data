@@ -478,19 +478,10 @@ var main = function() {
   var text = '';
 
   process.stdin.setEncoding('utf8');
-
   process.stdin.on('readable', function() {
     text += process.stdin.read();
   });
-
   process.stdin.on('end', function() {
-    var regExpPageFooter = new RegExp(
-        insertSep(
-          '監察院公報', '……….', '廉', '政', '專', '刊',
-          '第', '\\d{1,3}', '期', '\\d{1,3}'),
-        'g');
-    text = text.replace(regExpPageFooter, '');
-
     var legislators = process.argv.slice(2);
 
     legislators.forEach(function(legislator) {

@@ -6,12 +6,16 @@ success=true
 
 for case in "${cases[@]}"
 do
+    if [ ! -f input.txt ]; then
+        echo Converting PDF to text...
+        node pdf-to-text.js test-data/監察院廉政專刊第61期.pdf > input.txt
+    fi
+
     rm -f /tmp/$case.json
-    node text-to-json.js $case < input.txt > /tmp/$case.json
+    node normalize-text.js < input.txt | node text-to-json.js $case > /tmp/$case.json
     diff /tmp/$case.json test-data/$case.json > /dev/null
 
-    if [ $? == 0 ]
-    then
+    if [ $? == 0 ]; then
         echo $case $(tput setaf 2)PASSED$(tput sgr0)
     else
         echo $case $(tput setaf 1)NOT PASSED$(tput sgr0)
@@ -19,8 +23,7 @@ do
     fi
 done
 
-if [ $success = true ]
-then
+if [ $success = true ]; then
     echo $(tput setaf 2)ALL PASSED$(tput sgr0)
     exit 0
 else
