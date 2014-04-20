@@ -45,7 +45,9 @@ var parseForm = function(form, sunshineInfo) {
   parseRealEstate(results[1], sunshineInfo);
 
   // Parse boats.
-  var regExpBoats = /（三）船舶(.*)（四）汽車/;
+  //var regExpBoats = /（三）船舶(.*)（四）汽車/;
+  var regExpBoats = new RegExp(
+    '（三）船舶(.*)（' + SEP + '?' + '四）汽車');
   results = form.match(regExpBoats);
   if (!results || results.length != 2) {
     throw 'Failed to parse boats for ' + legislator;
@@ -53,12 +55,78 @@ var parseForm = function(form, sunshineInfo) {
   parseBoats(results[1], sunshineInfo);
 
   // Parse cars.
-  var regExpCars = /(（四）汽車（含大型重型機器腳踏車）.*)（五）航空器/;
+  //var regExpCars = /（四）汽車（含大型重型機器腳踏車）(.*)（五）航空器/;
+  var regExpCars = new RegExp(
+      '（' + SEP + '?' + '四）汽車（含大型重型機器腳踏車）(.*)（五）航空器');
   results = form.match(regExpCars);
   if (!results || results.length != 2) {
     throw 'Failed to parse cars for ' + legislator;
   }
   parseCars(results[1], sunshineInfo);
+
+  // Parse aircraft.
+  var regExpAircraft = /（五）航空器(.*)（六）現金/;
+  results = form.match(regExpAircraft);
+  if (!results || results.length != 2) {
+    throw 'Failed to parse aircraft for ' + legislator;
+  }
+  parseAircraft(results[1], sunshineInfo);
+
+  // Parse cash.
+  var regExpCash = /（六）現金(.*)（七）存款/;
+  results = form.match(regExpCash);
+  if (!results || results.length != 2) {
+    throw 'Failed to parse cash for ' + legislator;
+  }
+  parseCash(results[1], sunshineInfo);
+
+  // Parse deposit.
+  var regExpDeposit = /（七）存款(.*)（八）有價證券/;
+  results = form.match(regExpDeposit);
+  if (!results || results.length != 2) {
+    throw 'Failed to parse deposit for ' + legislator;
+  }
+  parseDeposit(results[1], sunshineInfo);
+
+  // Parse securities.
+  var regExpSecurities = /（八）有價證券(.*)（九）珠寶、古董、字畫及其他具有相當價值之財產/;
+  results = form.match(regExpSecurities);
+  if (!results || results.length != 2) {
+    throw 'Failed to parse securities for ' + legislator;
+  }
+  parseSecurities(results[1], sunshineInfo);
+
+  // Parse jewelry.
+  var regExpJewelry = /（九）珠寶、古董、字畫及其他具有相當價值之財產(.*)（十）債權/;
+  results = form.match(regExpJewelry);
+  if (!results || results.length != 2) {
+    throw 'Failed to parse jewelry for ' + legislator;
+  }
+  parseJewelry(results[1], sunshineInfo);
+
+  // Parse loan.
+  var regExpLoan = /（十）債權(.*)（十一）債務/;
+  results = form.match(regExpLoan);
+  if (!results || results.length != 2) {
+    throw 'Failed to parse loan for ' + legislator;
+  }
+  parseLoan(results[1], sunshineInfo);
+
+  // Parse debt.
+  var regExpDebt = /（十一）債務(.*)（十二）事業投資/;
+  results = form.match(regExpDebt);
+  if (!results || results.length != 2) {
+    throw 'Failed to parse debt for ' + legislator;
+  }
+  parseDebt(results[1], sunshineInfo);
+
+  // Parse investment.
+  var regExpInvestment = /（十二）事業投資(.*)（十三）備/;
+  results = form.match(regExpInvestment);
+  if (!results || results.length != 2) {
+    throw 'Failed to parse investment for ' + legislator;
+  }
+  parseInvestment(results[1], sunshineInfo);
 };
 
 var parseRealEstate = function(realEstate, sunshineInfo) {
@@ -264,19 +332,128 @@ var parseCars = function(cars, sunshineInfo) {
 
   carEntries.forEach(function(car) {
     results = car.match(
-        /(.*?)(\d,\d{3}).*?(\d{2,3})年(\d{1,2})月(\d{1,2})日(?:買賣|所有權移轉)((?:\d|,)+)/);
+        /(.*?)(\d,\d{3}).*?年(\d{1,2})月(\d{1,2})日(?:買賣|所有權移轉)((?:\d|,)+)/);
     
     var carEntry = {};
     carEntry['name'] = results[1];
-    carEntry['cylinder-capacity'] = results[2];
     carEntry['acquire-date'] = new Date(
-      parseInt(results[3], 10) + 1911,
-      parseInt(results[4], 10) - 1,
-      parseInt(results[5], 10));
-    carEntry['value'] = results[6];
+      parseInt(results[2], 10) + 1911,
+      parseInt(results[3], 10) - 1,
+      parseInt(results[4], 10));
+    carEntry['value'] = results[5];
 
     sunshineInfo['cars'].push(carEntry);
   });
+};
+
+var parseAircraft = function(aircraft, sunshineInfo) {
+  if (!/本欄空白/.test(aircraft)) {
+    throw 'It\'s time to implement parseAircraft.';
+  }
+};
+
+var parseCash = function(cash, sunshineInfo) {
+  if (!/本欄空白/.test(cash)) {
+    throw 'It\'s time to implement parseCash.';
+  }
+};
+
+var parseDeposit = function(deposit, sunshineInfo) {
+  var legislator = sunshineInfo['legislator'];
+  var regExpDeposit = /（總金額：新臺幣(.*)元）/;
+  var results = deposit.match(regExpDeposit);
+  if (!results || results.length != 2) {
+    throw 'Failed to parse deposit for ' + legislator;
+  }
+
+  var valueStr = removeSep(results[1]);
+  var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
+
+  if (!isNaN(valueNum)) {
+    sunshineInfo['deposit'] = valueNum;
+  }
+};
+
+var parseSecurities = function(securities, sunshineInfo) {
+  var legislator = sunshineInfo['legislator'];
+  var regExpSecurities = /（總價額：新臺幣(.*)元）/;
+  var results = securities.match(regExpSecurities);
+  if (!results || results.length != 2) {
+    throw 'Failed to parse securities for ' + legislator;
+  }
+
+  var valueStr = removeSep(results[1]);
+  var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
+
+  if (!isNaN(valueNum)) {
+    sunshineInfo['securities'] = valueNum;
+  }
+};
+
+var parseJewelry = function(jewelry, sunshineInfo) {
+  var legislator = sunshineInfo['legislator'];
+  var regExpJewelry = /（總價額：新臺幣(.*)元）/;
+  var results = jewelry.match(regExpJewelry);
+  if (!results || results.length != 2) {
+    throw 'Failed to parse jewelry for ' + legislator;
+  }
+
+  var valueStr = removeSep(results[1]);
+  var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
+
+  if (!isNaN(valueNum)) {
+    sunshineInfo['jewelry'] = valueNum;
+  }
+};
+
+var parseLoan = function(loan, sunshineInfo) {
+  var legislator = sunshineInfo['legislator'];
+  var regExpLoan = /（總金額：新臺幣(.*)元）/;
+  var results = loan.match(regExpLoan);
+  if (!results || results.length != 2) {
+    throw 'Failed to parse loan for ' + legislator;
+  }
+
+  var valueStr = removeSep(results[1]);
+  var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
+
+  if (!isNaN(valueNum)) {
+    sunshineInfo['loan'] = valueNum;
+  }
+};
+
+var parseDebt = function(debt, sunshineInfo) {
+  var legislator = sunshineInfo['legislator'];
+  var regExpDebt = /（總金額：新臺幣(.*)元）/;
+  var results = debt.match(regExpDebt);
+  if (!results || results.length != 2) {
+    throw 'Failed to parse debt for ' + legislator;
+  }
+
+  var valueStr = removeSep(results[1]);
+  var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
+
+  if (!isNaN(valueNum)) {
+    sunshineInfo['debt'] = valueNum;
+  }
+};
+
+var parseInvestment = function(investment, sunshineInfo) {
+  var legislator = sunshineInfo['legislator'];
+  //var regExpInvestment= /（總金額：新臺幣(.*)元）/;
+  var regExpInvestment = new RegExp(
+      '總金額：新臺' + SEP + '?' + '幣(.*)元）');
+  var results = investment.match(regExpInvestment);
+  if (!results || results.length != 2) {
+    throw 'Failed to parse investment for ' + legislator;
+  }
+
+  var valueStr = removeSep(results[1]);
+  var valueNum = parseInt(valueStr.replace(/,/g, ''), 10);
+
+  if (!isNaN(valueNum)) {
+    sunshineInfo['investment'] = valueNum;
+  }
 };
 
 var insertSep = function() {
@@ -309,8 +486,8 @@ var main = function() {
     text = text.replace(regExpPageFooter, '');
 
     parseText(text, '尤美女');
-    //parseText(text, '丁守中');
-    //parseText(text, '王進士');
+    parseText(text, '丁守中');
+    parseText(text, '王進士');
   });
 };
 
