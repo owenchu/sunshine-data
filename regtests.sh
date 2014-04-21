@@ -1,9 +1,27 @@
 #!/bin/bash
 # tputcolors
 
+OUTPUT_DIR=out
+TEST_OUTPUT_DIR=out/test
+TEST_DATA_DIR=test-data
+
+INPUT=$OUTPUT_DIR/input.txt
+NORMALIZED_INPUT=$OUTPUT_DIR/input-normalized.txt
+
 success=true
 
-for test_file in test-data/*.json
+rm -rf $TEST_OUTPUT_DIR
+mkdir -p $TEST_OUTPUT_DIR
+
+if [ ! -f $INPUT ]; then
+    echo Converting PDF to text...
+    node pdf-to-text.js reports/監察院廉政專刊第61期.pdf > $INPUT
+fi
+
+rm -f $NORMALIZED_INPUT
+node normalize-text.js < $INPUT > $NORMALIZED_INPUT
+
+for test_file in $TEST_DATA_DIR/*.json
 do
     filename=$(basename "$test_file")
     case="${filename%.*}"
@@ -13,14 +31,8 @@ do
         continue
     fi
 
-    if [ ! -f input.txt ]; then
-        echo Converting PDF to text...
-        node pdf-to-text.js test-data/監察院廉政專刊第61期.pdf > input.txt
-    fi
-
-    rm -f /tmp/$case.json
-    node normalize-text.js < input.txt | node text-to-json.js $case > /tmp/$case.json
-    diff /tmp/$case.json test-data/$case.json > /dev/null
+    node text-to-json.js $case < $NORMALIZED_INPUT > $TEST_OUTPUT_DIR/$case.json
+    diff $TEST_OUTPUT_DIR/$case.json $TEST_DATA_DIR/$case.json > /dev/null
 
     if [ $? == 0 ]; then
         echo $case $(tput setaf 2)PASSED$(tput sgr0)
