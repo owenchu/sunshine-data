@@ -187,11 +187,6 @@ var fixBrokenParts = function(text) {
     text = text.replace(part.oldStr, part.newStr);
   });
 
-  var str = '臺北市大安區金華段三小段!0383!-!0004!地號';
-  var index = text.indexOf(str);
-  console.log(text.substring(index-10, index+500));
-  console.log('');
-
   return text;
 };
 
