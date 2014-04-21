@@ -222,6 +222,12 @@ var wrapStrWithSep = function(str) {
 };
 
 var main = function() {
+  if (process.argv.length != 2) {
+    console.log(
+        'Usage: node normalize-text.js < input.txt');
+    return;
+  }
+
   var text = '';
 
   process.stdin.setEncoding('utf8');

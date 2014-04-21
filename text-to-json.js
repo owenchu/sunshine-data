@@ -459,7 +459,7 @@ var removeSep = function(str) {
 var main = function() {
   if (process.argv.length <= 2) {
     console.log(
-        'Usage: node text-to-json.js legislator-name [legislator-name ...]');
+        'Usage: node text-to-json.js legislator-name [legislator-name ...] < input-normalized.txt');
     return;
   }
 
