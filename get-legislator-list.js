@@ -2,8 +2,8 @@ var SEP = '!';
 
 var getLegislators = function(text) {
   var regExpLegislators = new RegExp(
-      insertSep('公職人員財產申報表', '申報人姓名') +
-      '.+?' + '服務機關', 'g');
+      insertSep('公職人員財產申報表', '申報人姓名') + '.{2,6}' +
+      insertSep('服務機關', '1.', '立法院', '職稱', '1' + SEP + '?.', '(立法委員|院長|副院長|秘書長)'), 'g');
   var results = text.match(regExpLegislators);
   var legislators = [];
 
